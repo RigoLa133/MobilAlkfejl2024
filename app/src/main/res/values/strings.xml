@@ -55,4 +55,16 @@
     <string name="title_activity_test">test</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="logout">Kijelentkezés</string>
+    <string name="default_web_client_id">12296719696-vjqm2gd7mdn9ae42qg5c6p07ic5kshat.apps.googleusercontent.com</string>
+    <string name="profile">Profilom</string>
+    <string name="name">Név</string>
+    <string name="email">E-mail</string>
+    <string name="phone_number">Telefonszám</string>
+    <string name="address">Szállítási cím</string>
+    <string name="city">Város</string>
+    <string name="postal_code">Ir. Szám</string>
+    <string name="street_address">Utca, Házszám</string>
+    <string name="edit_profile">Profil szerkesztése</string>
+    <string name="edit">Szerkesztés</string>
 </resources>

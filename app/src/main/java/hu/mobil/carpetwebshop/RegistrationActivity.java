@@ -14,8 +14,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegistrationActivity extends MainActivity {
-    EditText vnevET;
-    EditText knevET;
     EditText emailET;
     EditText passwordET;
     EditText passwordConfirmET;
@@ -27,8 +25,6 @@ public class RegistrationActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        vnevET = findViewById(R.id.vezetekNevET);
-        knevET = findViewById(R.id.keresztNevET);
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
         passwordConfirmET = findViewById(R.id.passwordConfirmET);
@@ -37,8 +33,6 @@ public class RegistrationActivity extends MainActivity {
     }
 
     public void register(View view) {
-        String vnev = vnevET.getText().toString();
-        String knev = knevET.getText().toString();
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
         String passwordConfirm = passwordConfirmET.getText().toString();
@@ -51,6 +45,8 @@ public class RegistrationActivity extends MainActivity {
 
         if (password.trim().isEmpty()) {
             passwordET.setError("A jelszót kötelező megadni");
+        } else if (password.trim().length() < 6) {
+            passwordET.setError("A jelszó legalább 6 karakter hosszú kell legyen");
         } else if (!password.equals(passwordConfirm)) {
             passwordConfirmET.setError("A jelszavak nem egyeznek");
         }
@@ -62,7 +58,7 @@ public class RegistrationActivity extends MainActivity {
                     Log.d("Nice", "User created successfully");
                     RegistrationActivity.super.redirectToProfileScreen();
                 } else {
-                    Log.d("Not Nice", "User registration failed");
+                    Log.d("Not Nice", "User registration failed: " + task.getException().getMessage());
                 }
             }
         });

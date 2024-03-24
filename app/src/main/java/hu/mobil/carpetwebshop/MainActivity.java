@@ -6,7 +6,6 @@ import static android.view.View.VISIBLE;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private ShoppingItemAdapter adapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
-    private Menu menu;
 
     private int gridNumber = 1;
     private boolean viewRow = true;
     private int cartItems = 0;
 
-    protected FirebaseUser user;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,28 +50,15 @@ public class MainActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    private void initializeData() {
-        String[] itemNames = getResources().getStringArray(R.array.shopping_item_names);
-        String[] itemPrice = getResources().getStringArray(R.array.shopping_item_prices);
-        TypedArray itemImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
-
-        itemList.clear();
-        for (int i = 0; i < itemNames.length; i++) {
-            itemList.add(new ShoppingItem(itemNames[i], itemPrice[i], itemImageResource.getResourceId(i,0)));
-        }
-
-        itemImageResource.recycle();
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.shop_list_menu, menu);
-        MenuItem menuItem = menu.findItem(R.id.search_bar);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem searchBar = menu.findItem(R.id.search_bar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.logo);
-        SearchView searchView = (SearchView) menuItem.getActionView();
+        SearchView searchView = (SearchView) searchBar.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -93,16 +77,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         int itemId = menuItem.getItemId();
+        //logo clicked
         if (itemId == android.R.id.home && this.getClass() != MainActivity.class) {
             returnToHomePage();
         }
+        //shopping cart clicked
         if (itemId == R.id.shopping_cart) {
-            Log.d("Nice", "Shopping cart clicked");
-        } else if (itemId == R.id.profile && this.getClass() != LoginActivity.class) {
-            Log.d("Nice", "View selector clicked");
-            redirectToLoginScreen();
+
+        }
+            //profile clicked
+        else if (itemId == R.id.profile && (this.getClass() != LoginActivity.class && this.getClass() != ProfileActivity.class)) {
+            if (user == null) {
+                redirectToLoginScreen();
+            } else {
+                redirectToProfileScreen();
+            }
+        //view selector clicked
         } else if (itemId == R.id.view_selector) {
-            Log.d("Nice", "Profile clicked");
             if (!viewRow) {
                 changeSpanCount(menuItem, R.drawable.view_selector_grid, 1);
             } else {
@@ -111,23 +102,6 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onOptionsItemSelected(menuItem);
         return true;
-    }
-
-    protected void redirectToLoginScreen() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    protected void redirectToProfileScreen() {
-        //Intent intent = new Intent(this, ProfileActivity.class);
-        //startActivity(intent);
-    }
-
-    private void changeSpanCount(MenuItem menuItem, int icon, int spanCount) {
-        viewRow = !viewRow;
-        menuItem.setIcon(icon);
-        GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-        layoutManager.setSpanCount(spanCount);
     }
 
     @Override
@@ -149,6 +123,27 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private void initializeData() {
+        String[] itemNames = getResources().getStringArray(R.array.shopping_item_names);
+        String[] itemPrice = getResources().getStringArray(R.array.shopping_item_prices);
+        TypedArray itemImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
+
+        itemList.clear();
+        for (int i = 0; i < itemNames.length; i++) {
+            itemList.add(new ShoppingItem(itemNames[i], itemPrice[i], itemImageResource.getResourceId(i,0)));
+        }
+
+        itemImageResource.recycle();
+        adapter.notifyDataSetChanged();
+    }
+
+    private void changeSpanCount(MenuItem menuItem, int icon, int spanCount) {
+        viewRow = !viewRow;
+        menuItem.setIcon(icon);
+        GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+        layoutManager.setSpanCount(spanCount);
+    }
+
     public void updateAlertIcon() {
         cartItems += 1;
         if (0 < cartItems) {
@@ -165,4 +160,19 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+
+    public void redirectToLoginScreen() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void redirectToProfileScreen() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public FirebaseUser getUser() {
+        return user;
+    }
+
 }
