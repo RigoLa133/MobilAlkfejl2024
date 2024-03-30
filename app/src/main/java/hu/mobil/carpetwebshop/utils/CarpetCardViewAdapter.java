@@ -1,11 +1,14 @@
 package hu.mobil.carpetwebshop.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -93,21 +96,33 @@ public class CarpetCardViewAdapter extends RecyclerView.Adapter<CarpetCardViewAd
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemImage;
         private TextView titleText;
-        private TextView priceTitleText;
         private TextView priceText;
+        private Button button;
+        Animation scaleDown, scaleUp;
 
+
+        @SuppressLint("ClickableViewAccessibility")
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemImage = itemView.findViewById(R.id.itemImage);
             titleText = itemView.findViewById(R.id.itemTitle);
-            priceTitleText = itemView.findViewById(R.id.priceTitle);
             priceText = itemView.findViewById(R.id.price);
-            itemView.findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
+            button = itemView.findViewById(R.id.addToCart);
+            scaleDown = AnimationUtils.loadAnimation(context, R.anim.add_to_cart_scale_down);
+            scaleUp = AnimationUtils.loadAnimation(context, R.anim.add_to_cart_scale_up);
+
+            button.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
-                    ((MainActivity)context).updateAlertIcon();
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        button.startAnimation(scaleDown);
+                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        button.startAnimation(scaleUp);
+                    }
+                    return false;
                 }
             });
+            button.setOnClickListener(v -> ((MainActivity)context).updateAlertIcon());
         }
 
         public void bindTo(Carpet currentCarpet) {

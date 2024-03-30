@@ -12,12 +12,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private CarpetCardViewAdapter adapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     private CarpetDbManager carpetDbManager;
 
@@ -57,10 +65,24 @@ public class MainActivity extends AppCompatActivity {
         carpetList = new ArrayList<>();
         adapter = new CarpetCardViewAdapter(this, carpetList);
         recyclerView.setAdapter(adapter);
+        drawerLayout = findViewById(R.id.mainLayout);
+        navigationView = findViewById(R.id.navLayout);
 
         carpetDbManager = new CarpetDbManager(FirebaseFirestore.getInstance());
         carpetDbManager.queryData(carpetList, adapter);
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_nav, R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.profile) {
+                redirectToProfileScreen();
+            }
+            drawerLayout.closeDrawer(GravityCompat.END);
+            return true;
+        });
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -98,14 +120,6 @@ public class MainActivity extends AppCompatActivity {
         //shopping cart clicked
         if (itemId == R.id.shopping_cart) {
 
-        }
-            //profile clicked
-        else if (itemId == R.id.profile && (this.getClass() != LoginActivity.class && this.getClass() != ProfileActivity.class)) {
-            if (user == null) {
-                redirectToLoginScreen();
-            } else {
-                redirectToProfileScreen();
-            }
         //view selector clicked
         } else if (itemId == R.id.view_selector) {
             if (!viewRow) {
@@ -113,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 changeSpanCount(menuItem, R.drawable.view_selector_row, 2);
             }
+        } else if (itemId == R.id.side_menu) {
+            drawerLayout.openDrawer(GravityCompat.END);
         }
         super.onOptionsItemSelected(menuItem);
         return true;
@@ -176,4 +192,7 @@ public class MainActivity extends AppCompatActivity {
         return user;
     }
 
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();
+    }
 }

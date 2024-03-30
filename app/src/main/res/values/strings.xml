@@ -249,4 +249,6 @@
     <string name="street_address">Utca, Házszám</string>
     <string name="edit_profile">Profil szerkesztése</string>
     <string name="edit">Szerkesztés</string>
+    <string name="open_nav">Open Nav</string>
+    <string name="close_nav">Close Nav</string>
 </resources>
