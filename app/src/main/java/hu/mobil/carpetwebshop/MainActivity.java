@@ -13,27 +13,39 @@ import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
+import hu.mobil.carpetwebshop.models.Carpet;
+import hu.mobil.carpetwebshop.utils.CarpetCardViewAdapter;
+import hu.mobil.carpetwebshop.utils.CarpetDbManager;
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private ArrayList<ShoppingItem> itemList;
-    private ShoppingItemAdapter adapter;
+    private ArrayList<Carpet> carpetList;
+    private CarpetCardViewAdapter adapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
+
+    private CarpetDbManager carpetDbManager;
 
     private int gridNumber = 1;
     private boolean viewRow = true;
     private int cartItems = 0;
 
     private FirebaseUser user;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
-        itemList = new ArrayList<>();
-        adapter = new ShoppingItemAdapter(this, itemList);
+        carpetList = new ArrayList<>();
+        adapter = new CarpetCardViewAdapter(this, carpetList);
         recyclerView.setAdapter(adapter);
-        initializeData();
+
+        carpetDbManager = new CarpetDbManager(FirebaseFirestore.getInstance());
+        carpetDbManager.queryData(carpetList, adapter);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
@@ -75,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
         //logo clicked
         if (itemId == android.R.id.home && this.getClass() != MainActivity.class) {
@@ -123,19 +137,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void initializeData() {
-        String[] itemNames = getResources().getStringArray(R.array.shopping_item_names);
-        String[] itemPrice = getResources().getStringArray(R.array.shopping_item_prices);
-        TypedArray itemImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
-
-        itemList.clear();
-        for (int i = 0; i < itemNames.length; i++) {
-            itemList.add(new ShoppingItem(itemNames[i], itemPrice[i], itemImageResource.getResourceId(i,0)));
-        }
-
-        itemImageResource.recycle();
-        adapter.notifyDataSetChanged();
-    }
 
     private void changeSpanCount(MenuItem menuItem, int icon, int spanCount) {
         viewRow = !viewRow;

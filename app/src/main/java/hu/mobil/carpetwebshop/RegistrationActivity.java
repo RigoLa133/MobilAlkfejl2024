@@ -13,6 +13,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import hu.mobil.carpetwebshop.dao.UserDao;
+import hu.mobil.carpetwebshop.models.User;
+
 public class RegistrationActivity extends MainActivity {
     EditText emailET;
     EditText passwordET;
@@ -56,6 +59,7 @@ public class RegistrationActivity extends MainActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d("Nice", "User created successfully");
+                    UserDao.addUser(new User(email));
                     RegistrationActivity.super.redirectToProfileScreen();
                 } else {
                     Log.d("Not Nice", "User registration failed: " + task.getException().getMessage());

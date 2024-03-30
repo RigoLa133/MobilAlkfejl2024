@@ -1,14 +1,26 @@
 package hu.mobil.carpetwebshop;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import hu.mobil.carpetwebshop.dao.UserDao;
+import hu.mobil.carpetwebshop.models.User;
+
 public class ProfileActivity extends MainActivity {
+    private TextView nameTV;
+    private TextView emailTV;
+    private TextView postalCodeTV;
+    private TextView cityTV;
+    private TextView addressTV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +32,12 @@ public class ProfileActivity extends MainActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUserData(super.getUser().getEmail());
+    }
+
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
         super.returnToHomePage();
@@ -28,6 +46,48 @@ public class ProfileActivity extends MainActivity {
 
     public void editProfile(View view) {
         Intent intent = new Intent(this, EditProfileActivity.class);
+        intent.putExtra("UserEmail", super.getUser().getEmail());
         startActivity(intent);
     }
+
+    public void displayInfo(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("A személyes adatok kitöltésével meggyorsíthatja a rendelés leadását!");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void getUserData(String email) {
+        UserDao.getUser(email, user -> {
+            if (user != null) {
+                setUserData(user);
+            } else {
+                Log.d("Not nice", "User not got");
+            }
+        });
+    }
+
+    private void setUserData(User user) {
+        nameTV = findViewById(R.id.nameTV);
+        emailTV = findViewById(R.id.emailTV);
+        postalCodeTV = findViewById(R.id.postalCodeTV);
+        cityTV = findViewById(R.id.cityTV);
+        addressTV = findViewById(R.id.addressTV);
+
+        emailTV.setText(user.getEmail());
+        String name = user.getVezeteknev().concat(" ").concat(user.getKeresztnev());
+        if (!user.getKeresztnev().isEmpty() && !user.getVezeteknev().isEmpty()) {
+            nameTV.setText(name);
+        }
+        postalCodeTV.setText(user.getPostalCode());
+        cityTV.setText(user.getCity());
+        addressTV.setText(user.getAddress());
+
+    }
+
 }

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.CarpetWebshop" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimary">@color/primary_color</item>
     </style>
 
     <style name="Theme.CarpetWebshop" parent="Base.Theme.CarpetWebshop" />

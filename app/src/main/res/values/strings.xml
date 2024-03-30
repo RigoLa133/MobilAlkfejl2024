@@ -14,44 +14,226 @@
     <string name="cancel">Mégsem</string>
     <string name="password_confirm">Jelszó megerősítése</string>
 
-    <string-array name="shopping_item_names">
-        <item>Kitty Bézs Barna\n1364/087</item>
-        <item>Kitty Bézs Barna\n34523/600</item>
-        <item>Kitty Bézs Barna\n49061/867</item>
-        <item>Kitty Bézs\n34629/075</item>
-        <item>Kitty Bézs\n47113/053</item>
-        <item>Kitty Fekete Fehér\n48416/090</item>
-        <item>Kitty Fekete Fehér\n48655/690</item>
-        <item>Kitty Szürke Fekete\n48191/060</item>
-        <item>Kitty Szürke\n20405/632</item>
-        <item>Kitty Szürke\n34521/032</item>
+    <string-array name="carpet_names">
+        <item>Kiddy Star szőnyeg\n120x170 cm</item>
+        <item>Play City szőnyeg\n160x230 cm</item>
+        <item>Kiddy Pastel szőnyeg\n120x170 cm</item>
+        <item>Kiddy Night szőnyeg\n120x170 cm</item>
+        <item>Kiddy Bunny szőnyeg\n160x230 cm</item>
+        <item>Pastel Kids dog szőnyeg\n120x170 cm</item>
+        <item>Kiddy Stripe szőnyeg\n80x150 cm</item>
+        <item>Cannes Kids racoon szőnyeg\n160x230 cm</item>
+        <item>Cattleya mustar grey szőnyeg\n120x170 cm</item>
+        <item>Estella beige szőnyeg\n120x170 cm</item>
+        <item>Estella blue szőnyeg\n120x170 cm</item>
+        <item>Estella black szőnyeg\n120x170 cm</item>
+        <item>Tunis beige blue szőnyeg\n160x230 cm</item>
+        <item>Prato grey szőnyeg\n80x150 cm</item>
+        <item>Savanna gold szőnyeg\n160x230 cm</item>
+        <item>Bamboo stripe szőnyeg\n200x290 cm</item>
+        <item>Sisalo Coffee brown konyhai szőnyeg\n80x200 cm</item>
+        <item>Kitchen vinyl konyhai szőnyeg\n65x150 cm</item>
+        <item>Kitchen wine konyhai szőnyeg\n60x150 cm</item>
+        <item>Sisalo Drinks konyhai szőnyeg\n80x200 cm</item>
+        <item>Sisalo Coffee konyhai szőnyeg\n80x200 cm</item>
+        <item>Kitchen Grill konyhai szőnyeg\n60x90 cm</item>
+        <item>Kitchen Aroma konyhai szőnyeg\n45x145 cm</item>
+        <item>Kitchen Stone konyhai szőnyeg\n45x145 cm</item>
+        <item>Kitchen Marokko konyhai szőnyeg\n45x145 cm</item>
+        <item>Loft Bath sand fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Loft Bath grey fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Loft Bath cream fürdőszobaszőnyeg\n80 cm kör</item>
+        <item>Loft Bath cream fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Loft Bath grey fürdőszobaszőnyeg\n80 cm kör</item>
+        <item>Loft Bath sand fürdőszobaszőnyeg\n80 cm kör</item>
+        <item>Loft Bath rose fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Loft Bath rose fürdőszobaszőnyeg\n80 cm kör</item>
+        <item>Rabbit grey fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Rabbit pink fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Star cream fürdőszobaszőnyeg\n50x80 cm</item>
+        <item>Bafi Shaggy sand szőnyeg\n120x170 cm</item>
+        <item>Bafi Shaggy grey szőnyeg\n120x170 cm</item>
+        <item>Bafi Shaggy brown szőnyeg\n120x170 cm</item>
+        <item>Aspero cream szőnyegn120x170 cm</item>
+        <item>Kendra beige szőnyeg\n160x230 cm</item>
+        <item>Relax beige szőnyeg\n160x230 cm</item>
+        <item>Relax waves szőnyeg\n160x230 cm</item>
+        <item>Relax grey szőnyeg\n160x230 cm</item>
+        <item>Royal Palace multi szőnyeg\n160x230 cm</item>
+        <item>Tamara beige szőnyeg\n120x170 cm</item>
+        <item>Impala rectangle szőnyeg\n120x170 cm</item>
+        <item>Neva gold szőnyeg\n 152x230 cm</item>
+        <item>Signal squares szőnyeg\n160x230 cm</item>
+        <item>Cannes gold szőnyeg\n120x170 cm</item>
+        <item>Cannes square szőnyeg\n120x170 cm</item>
+        <item>Impala wave beige szőnyeg\n120x170 cm</item>
     </string-array>
 
-    <array name="shopping_item_prices">
-        <item>100.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
-        <item>1.999 Ft/db</item>
+    <string-array name="carpet_prices">
+        <item>24 990 Ft/db</item>
+        <item>34 990 Ft/db</item>
+        <item>24 990 Ft/db</item>
+        <item>24 990 Ft/db</item>
+        <item>43 990 Ft/db</item>
+        <item>27 990 Ft/db</item>
+        <item>13 990 Ft/db</item>
+        <item>31 490 Ft/db</item>
+        <item>14 990 Ft/db</item>
+        <item>14 990 Ft/db</item>
+        <item>14 990 Ft/db</item>
+        <item>14 990 Ft/db</item>
+        <item>24 990 Ft/db</item>
+        <item>9 990 Ft/db</item>
+        <item>38 990 Ft/db</item>
+        <item>62 990 Ft/db</item>
+        <item>12 990 Ft/db</item>
+        <item>13 990 Ft/db</item>
+        <item>12 990 Ft/db</item>
+        <item>12 990 Ft/db</item>
+        <item>12 990 Ft/db</item>
+        <item>7 990 Ft/db</item>
+        <item>9 490 Ft/db</item>
+        <item>9 490 Ft/db</item>
+        <item>9 490 Ft/db</item>
+        <item>2 999 Ft/db</item>
+        <item>2 999 Ft/db</item>
+        <item>4 999 Ft/db</item>
+        <item>2 999 Ft/db</item>
+        <item>4 999 Ft/db</item>
+        <item>4 999 Ft/db</item>
+        <item>4 299 Ft/db</item>
+        <item>7 199 Ft/db</item>
+        <item>5 190 Ft/db</item>
+        <item>7 490 Ft/db</item>
+        <item>7 490 Ft/db</item>
+        <item>35 990 Ft/db</item>
+        <item>35 990 Ft/db</item>
+        <item>35 990 Ft/db</item>
+        <item>22 990 Ft/db</item>
+        <item>39 990 Ft/db</item>
+        <item>64 990 Ft/db</item>
+        <item>64 990 Ft/db</item>
+        <item>64 990 Ft/db</item>
+        <item>32 990 Ft/db</item>
+        <item>16 790 Ft/db</item>
+        <item>32 990 Ft/db</item>
+        <item>33 990 Ft/db</item>
+        <item>45 990 Ft/db</item>
+        <item>17 490 Ft/db</item>
+        <item>17 490 Ft/db</item>
+        <item>32 990 Ft/db</item>
+    </string-array>
+
+    <string-array name="carpet_categories">
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>gyerek</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>kulteri</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>konyha</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>furdoszoba</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+        <item>darab</item>
+    </string-array>
+
+    <array name="carpet_images">
+        <item>@drawable/kiddy_star</item>
+        <item>@drawable/play_city</item>
+        <item>@drawable/kiddy_pastel</item>
+        <item>@drawable/kiddy_night</item>
+        <item>@drawable/kiddy_bunny</item>
+        <item>@drawable/pastel_kids_dog</item>
+        <item>@drawable/kiddy_stripe</item>
+        <item>@drawable/cannes_kids_racoon</item>
+        <item>@drawable/cattleya_mustar</item>
+        <item>@drawable/estella_beige</item>
+        <item>@drawable/estella_blue</item>
+        <item>@drawable/estella_black</item>
+        <item>@drawable/tunis_beige_blue</item>
+        <item>@drawable/prato_grey</item>
+        <item>@drawable/savanna_gold</item>
+        <item>@drawable/bamboo_stripe</item>
+        <item>@drawable/sisalo_coffee_brown</item>
+        <item>@drawable/kitchen_vinyl</item>
+        <item>@drawable/kitchen_wine</item>
+        <item>@drawable/sisalo_drinks</item>
+        <item>@drawable/sisalo_coffee</item>
+        <item>@drawable/kitchen_grill</item>
+        <item>@drawable/kitchen_aroma</item>
+        <item>@drawable/kitchen_stone</item>
+        <item>@drawable/kitchen_marokko</item>
+        <item>@drawable/loft_bath_sand</item>
+        <item>@drawable/loft_bath_grey</item>
+        <item>@drawable/loft_cream_kor</item>
+        <item>@drawable/loft_bath_cream</item>
+        <item>@drawable/loft_grey_kor</item>
+        <item>@drawable/loft_sand_kor</item>
+        <item>@drawable/loft_bath_rose</item>
+        <item>@drawable/loft_rose_kor</item>
+        <item>@drawable/rabbit_grey</item>
+        <item>@drawable/rabbit_pink</item>
+        <item>@drawable/star_cream</item>
+        <item>@drawable/bafi_shaggy_sand</item>
+        <item>@drawable/bafi_shaggy_grey</item>
+        <item>@drawable/bafi_shaggy_brown</item>
+        <item>@drawable/aspero_cream</item>
+        <item>@drawable/kendra_beige</item>
+        <item>@drawable/relax_beige</item>
+        <item>@drawable/relax_waves</item>
+        <item>@drawable/relax_grey</item>
+        <item>@drawable/royal_palace</item>
+        <item>@drawable/tamara_beige</item>
+        <item>@drawable/impala_rectangle</item>
+        <item>@drawable/neva_gold</item>
+        <item>@drawable/signal_squares</item>
+        <item>@drawable/cannes_gold</item>
+        <item>@drawable/cannes_square</item>
+        <item>@drawable/impala_wave</item>
     </array>
 
-    <array name="shopping_item_images">
-        <item>@drawable/kitty_bb_1364_087_01</item>
-        <item>@drawable/kitty_bb_34523_600_01</item>
-        <item>@drawable/kitty_bb_49061_867_01</item>
-        <item>@drawable/kitty_bezs_34629_075_01</item>
-        <item>@drawable/kitty_bezs_47113_053_01</item>
-        <item>@drawable/kitty_ff_48416_090_01</item>
-        <item>@drawable/kitty_ff_48655_690_01</item>
-        <item>@drawable/kitty_sz_fekete_48191_060_01</item>
-        <item>@drawable/kitty_szurke_20405_632_01</item>
-        <item>@drawable/kitty_szurke_34521_032_01</item>
-    </array>
     <string name="title_activity_test">test</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>

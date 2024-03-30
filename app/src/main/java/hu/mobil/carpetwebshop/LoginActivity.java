@@ -64,9 +64,10 @@ public class LoginActivity extends MainActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    Log.d("Nice", "Normal login success!");
                     LoginActivity.super.redirectToProfileScreen();
                 } else {
-                    Log.d("Not Nice", "Login failed: " + task.getException().getMessage());
+                    Log.d("Not Nice", "Normal Login failed: " + task.getException().getMessage());
                 }
             }
         });
@@ -107,7 +108,7 @@ public class LoginActivity extends MainActivity {
                 if (task.isSuccessful()) {
                     LoginActivity.super.redirectToProfileScreen();
                 } else {
-                    Log.d("Not Nice", "Login failed: " + task.getException().getMessage());
+                    Log.d("Not Nice", "Google Login failed: " + task.getException().getMessage());
                 }
             }
         });
