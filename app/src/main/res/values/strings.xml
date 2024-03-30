@@ -251,4 +251,11 @@
     <string name="edit">Szerkesztés</string>
     <string name="open_nav">Open Nav</string>
     <string name="close_nav">Close Nav</string>
+    <string name="all_carpets">Összes szőnyeg</string>
+    <string name="bathroom_carpets">Fürdőszobaszőnyegek</string>
+    <string name="childrens_carpets">Gyerekszőnyegek</string>
+    <string name="kitchen_carpets">Konyhaszőnyegek</string>
+    <string name="outdoor_carpets">Kültéri szőnyegek</string>
+    <string name="receipts">Számláim</string>
+    <string name="darab_carpets">Darabszőnyegek</string>
 </resources>

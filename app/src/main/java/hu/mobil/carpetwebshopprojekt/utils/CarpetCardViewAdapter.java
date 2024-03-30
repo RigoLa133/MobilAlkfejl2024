@@ -3,7 +3,6 @@ package hu.mobil.carpetwebshopprojekt.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -110,22 +109,15 @@ public class CarpetCardViewAdapter extends RecyclerView.Adapter<CarpetCardViewAd
             button = itemView.findViewById(R.id.addToCart);
             anim = AnimationUtils.loadAnimation(context, R.anim.add_to_cart_button_animation);
 
-            button.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        button.startAnimation(anim);
-                    }
-                    return false;
-                }
-            });
-            button.setOnClickListener(v -> ((MainActivity)context).updateAlertIcon());
         }
 
         public void bindTo(Carpet currentCarpet) {
             titleText.setText(currentCarpet.getName());
             priceText.setText(currentCarpet.getPrice());
-
+            button.setOnClickListener(v -> {
+                    ((MainActivity)context).addToCart(currentCarpet);
+                    button.startAnimation(anim);
+            });
             Glide.with(context).load(currentCarpet.getImageResource()).into(itemImage);
         }
     }

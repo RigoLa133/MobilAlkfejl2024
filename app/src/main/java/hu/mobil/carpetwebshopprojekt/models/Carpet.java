@@ -20,4 +20,12 @@ public class Carpet {
     public String getPrice() {return price;}
     public String getCategory() {return category;}
     public int getImageResource() {return imageResource;}
+
+    public int priceToInt() {
+        if (price.charAt(1) == ' ') {
+            return Integer.valueOf(price.substring(0,1).concat(price.substring(2,5)));
+        } else {
+            return Integer.valueOf(price.substring(0,2).concat(price.substring(3,6)));
+        }
+    }
 }

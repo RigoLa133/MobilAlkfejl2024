@@ -29,7 +29,6 @@ public class CarpetDbManager extends AppCompatActivity {
         carpetList.clear();
 
         carpets.orderBy("category", Query.Direction.ASCENDING).get().addOnSuccessListener(queryDocumentSnapshots -> {
-            Log.d("Nice", "Almost");
             for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                 Carpet carpet = doc.toObject(Carpet.class);
                 carpetList.add(carpet);
@@ -43,7 +42,7 @@ public class CarpetDbManager extends AppCompatActivity {
         });
     }
 
-    public void initializeData(Context context) {
+    private void initializeData(Context context) {
         String[] itemNames = context.getResources().getStringArray(R.array.carpet_names);
         String[] itemPrice = context.getResources().getStringArray(R.array.carpet_prices);
         String[] itemCategory = context.getResources().getStringArray(R.array.carpet_categories);
@@ -55,5 +54,17 @@ public class CarpetDbManager extends AppCompatActivity {
         }
 
         itemImageResource.recycle();
+    }
+
+    public void queryDataByCategory(ArrayList<Carpet> carpetList, CarpetCardViewAdapter adapter, String category) {
+        carpetList.clear();
+
+        carpets.whereEqualTo("category", category).orderBy("name", Query.Direction.ASCENDING).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                Carpet carpet = doc.toObject(Carpet.class);
+                carpetList.add(carpet);
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 }

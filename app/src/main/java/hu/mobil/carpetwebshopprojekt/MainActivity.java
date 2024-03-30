@@ -4,8 +4,8 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import hu.mobil.carpetwebshopprojekt.models.Carpet;
 import hu.mobil.carpetwebshopprojekt.utils.CarpetCardViewAdapter;
 import hu.mobil.carpetwebshopprojekt.utils.CarpetDbManager;
+import hu.mobil.carpetwebshopprojekt.utils.ShoppingCart;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int gridNumber = 1;
     private boolean viewRow = true;
-    private int cartItems = 0;
 
     private FirebaseUser user;
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //shopping cart clicked
         if (itemId == R.id.shopping_cart) {
-
+            redirectToShoppingCart();
         //view selector clicked
         } else if (itemId == R.id.view_selector) {
             if (!viewRow) {
@@ -151,7 +151,20 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            if (itemId == R.id.profile) {
+
+            if (itemId == R.id.allCarpets) {
+                carpetDbManager.queryData(carpetList, adapter, this);
+            } else if (itemId == R.id.darabCarpets) {
+                carpetDbManager.queryDataByCategory(carpetList, adapter,"darab");
+            } else if (itemId == R.id.outdoorCarpets) {
+                carpetDbManager.queryDataByCategory(carpetList, adapter,"kulteri");
+            } else if (itemId == R.id.bathroomCarpets) {
+                carpetDbManager.queryDataByCategory(carpetList, adapter,"furdoszoba");
+            } else if (itemId == R.id.childrensCarpets) {
+                carpetDbManager.queryDataByCategory(carpetList, adapter,"gyerek");
+            } else if (itemId == R.id.kitchenCarpets) {
+                carpetDbManager.queryDataByCategory(carpetList, adapter, "konyha");
+            } else if (itemId == R.id.profile) {
                 if (user != null) {
                     redirectToProfileScreen();
                 } else {
@@ -173,16 +186,16 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setSpanCount(spanCount);
     }
 
-    public void updateAlertIcon() {
-        cartItems += 1;
-        if (0 < cartItems) {
+    public void addToCart(Carpet carpet) {
+        ShoppingCart.addToCart(carpet);
+        if (0 < ShoppingCart.getAmount()) {
             findViewById(R.id.shopping_cart).startAnimation(AnimationUtils.loadAnimation(this, R.anim.cart_rotation));
-            contentTextView.setText(String.valueOf(cartItems));
+            contentTextView.setText(String.valueOf(ShoppingCart.getAmount()));
         } else {
             contentTextView.setText("");
         }
 
-        redCircle.setVisibility((cartItems > 0) ? VISIBLE : GONE);
+        redCircle.setVisibility((ShoppingCart.getAmount() > 0) ? VISIBLE : GONE);
     }
 
     public void returnToHomePage() {
@@ -208,5 +221,10 @@ public class MainActivity extends AppCompatActivity {
     public void logout(View view) {
         user = null;
         FirebaseAuth.getInstance().signOut();
+    }
+
+    public void redirectToShoppingCart() {
+        //Intent intent = new Intent(this, ShoppingCartActivity.class);
+        //startActivity(intent);
     }
 }

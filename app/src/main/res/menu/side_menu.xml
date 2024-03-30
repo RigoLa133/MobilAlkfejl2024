@@ -3,11 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:shownIn="navigation_view">
 
+
+
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/allCarpets"
+            android:title="@string/all_carpets"/>
+
+        <item
+            android:id="@+id/darabCarpets"
+            android:title="@string/darab_carpets"/>
+
+        <item
+            android:id="@+id/outdoorCarpets"
+            android:title="@string/outdoor_carpets" />
+
+        <item
+            android:id="@+id/bathroomCarpets"
+            android:title="@string/bathroom_carpets"/>
+
+        <item
+            android:id="@+id/childrensCarpets"
+            android:title="@string/childrens_carpets"/>
+
+        <item
+            android:id="@+id/kitchenCarpets"
+            android:title="@string/kitchen_carpets"/>
+
+        <item android:title=""/>
+
         <item
             android:id="@+id/profile"
             android:title="@string/profile"
             android:icon="@drawable/profile"/>
+
+        <item
+            android:id="@+id/receipts"
+            android:title="@string/receipts"
+            android:icon="@drawable/receipt"/>
         <item
             android:id="@+id/logout"
             android:title="@string/logout"
