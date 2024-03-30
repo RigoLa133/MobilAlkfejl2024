@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private CarpetCardViewAdapter adapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
-    Animation anim;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void redirectToShoppingCart() {
-        //Intent intent = new Intent(this, ShoppingCartActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ShoppingCartActivity.class);
+        startActivity(intent);
     }
 }

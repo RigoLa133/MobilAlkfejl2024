@@ -258,4 +258,6 @@
     <string name="outdoor_carpets">Kültéri szőnyegek</string>
     <string name="receipts">Számláim</string>
     <string name="darab_carpets">Darabszőnyegek</string>
+    <string name="total">Összesen</string>
+    <string name="amount">Mennyiség</string>
 </resources>

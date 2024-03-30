@@ -30,4 +30,5 @@ public class CarpetInCart {
     public int getTotalPrice() {
         return amount * price;
     }
+
 }

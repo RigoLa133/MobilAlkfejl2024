@@ -27,4 +27,8 @@ public class ShoppingCart {
         }
         return amount;
     }
+
+    public static ArrayList<CarpetInCart> getCart() {
+        return contents;
+    }
 }
