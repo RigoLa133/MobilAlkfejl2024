@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "933418635689",
+    "project_id": "carpet-webshop-projekt",
+    "storage_bucket": "carpet-webshop-projekt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933418635689:android:34aaba657029128f3874b8",
+        "android_client_info": {
+          "package_name": "hu.mobil.carpetwebshopprojekt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933418635689-fu2npagvp8umfffl0ajn76tvlu87n495.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.mobil.carpetwebshopprojekt",
+            "certificate_hash": "9f1aa11f6839f1d605a844248f841a55e6619d33"
+          }
+        },
+        {
+          "client_id": "933418635689-ga6e85792sb91mtafc7q0gsnfb40gl5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4UrFD7TxN23r3NXZYaWGX7ioA6YXHfHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933418635689-ga6e85792sb91mtafc7q0gsnfb40gl5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
