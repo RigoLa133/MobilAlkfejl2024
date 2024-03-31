@@ -67,6 +67,24 @@
             android:layout_below="@id/view"
             android:text="@string/price_placeholder"/>
 
+        <ImageButton
+            android:id="@+id/addCarpet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shoppingCartTotal"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/white"
+            app:srcCompat="@drawable/add"/>
+
+        <ImageButton
+            android:id="@+id/removeCarpet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shoppingCartTotal"
+            android:layout_toStartOf="@id/addCarpet"
+            android:backgroundTint="@color/white"
+            app:srcCompat="@drawable/remove"/>
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

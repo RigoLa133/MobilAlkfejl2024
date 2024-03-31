@@ -5,11 +5,9 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Carpet> carpetList;
     private CarpetCardViewAdapter adapter;
     private FrameLayout redCircle;
-    private TextView contentTextView;
+    private TextView redCircleText;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private int gridNumber = 1;
     private boolean viewRow = true;
 
-    private FirebaseUser user;
+    private static FirebaseUser user;
 
 
 
@@ -76,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setRedCircleText();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +112,11 @@ public class MainActivity extends AppCompatActivity {
         }
         //shopping cart clicked
         if (itemId == R.id.shopping_cart) {
-            redirectToShoppingCart();
+            if (user != null) {
+                redirectToShoppingCart();
+            } else {
+                redirectToLoginScreen();
+            }
         //view selector clicked
         } else if (itemId == R.id.view_selector) {
             if (!viewRow) {
@@ -130,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
 
         redCircle = (FrameLayout) rootView.findViewById(R.id.view_alert_red_circle);
-        contentTextView = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
+        redCircleText = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +176,12 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     redirectToLoginScreen();
                 }
+            } else if (itemId == R.id.receipts) {
+                if (user != null) {
+                    redirectToReceipts();
+                } else {
+                    redirectToLoginScreen();
+                }
             }
             else if (itemId == R.id.logout) {
                 if (user != null) logout(navigationView);
@@ -186,14 +199,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addToCart(Carpet carpet) {
+        if (user == null) {return;}
         ShoppingCart.addToCart(carpet);
-        if (0 < ShoppingCart.getAmount()) {
-            findViewById(R.id.shopping_cart).startAnimation(AnimationUtils.loadAnimation(this, R.anim.cart_rotation));
-            contentTextView.setText(String.valueOf(ShoppingCart.getAmount()));
-        } else {
-            contentTextView.setText("");
-        }
+        findViewById(R.id.shopping_cart).startAnimation(AnimationUtils.loadAnimation(this, R.anim.cart_rotation));
+        setRedCircleText();
+    }
 
+    private void setRedCircleText() {
+        if (ShoppingCart.getAmount() > 0) {
+            redCircleText.setText(String.valueOf(ShoppingCart.getAmount()));
+        } else {
+            redCircleText.setText("");
+        }
         redCircle.setVisibility((ShoppingCart.getAmount() > 0) ? VISIBLE : GONE);
     }
 
@@ -213,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public FirebaseUser getUser() {
+    public static FirebaseUser getUser() {
         return user;
     }
 
@@ -226,4 +243,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShoppingCartActivity.class);
         startActivity(intent);
     }
+
+    private void redirectToReceipts() {
+        Intent intent = new Intent(this, ReceiptsActivity.class);
+        startActivity(intent);
+    }
+
+
+
+
 }

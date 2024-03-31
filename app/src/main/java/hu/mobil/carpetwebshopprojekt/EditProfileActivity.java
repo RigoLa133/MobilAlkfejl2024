@@ -1,7 +1,6 @@
 package hu.mobil.carpetwebshopprojekt;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -23,12 +22,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        currentUserEmail = getIntent().getStringExtra("UserEmail");
+        currentUserEmail = MainActivity.getUser().getEmail();
         getUserData(currentUserEmail);
     }
 
     public void cancel(View view) {
-        Log.d("Nice", "Burh");
         finish();
     }
 
@@ -56,8 +54,6 @@ public class EditProfileActivity extends AppCompatActivity {
         UserDao.getUser(email, user -> {
             if (user != null) {
                 setUserData(user);
-            } else {
-                Log.d("Not nice", "User not got");
             }
         });
     }

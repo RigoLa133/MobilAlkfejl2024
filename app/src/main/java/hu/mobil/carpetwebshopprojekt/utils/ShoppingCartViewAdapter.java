@@ -1,10 +1,10 @@
 package hu.mobil.carpetwebshopprojekt.utils;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import hu.mobil.carpetwebshopprojekt.R;
+import hu.mobil.carpetwebshopprojekt.ShoppingCartActivity;
 import hu.mobil.carpetwebshopprojekt.models.CarpetInCart;
 
 public class ShoppingCartViewAdapter extends RecyclerView.Adapter<ShoppingCartViewAdapter.ViewHolder> {
@@ -47,6 +48,8 @@ public class ShoppingCartViewAdapter extends RecyclerView.Adapter<ShoppingCartVi
         private TextView carpetName;
         private TextView carpetAmount;
         private TextView carpetTotal;
+        private ImageButton addCarpet;
+        private ImageButton removeCarpet;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -55,6 +58,8 @@ public class ShoppingCartViewAdapter extends RecyclerView.Adapter<ShoppingCartVi
             carpetName = itemView.findViewById(R.id.shoppingCartItemName);
             carpetAmount = itemView.findViewById(R.id.shoppingCartAmount);
             carpetTotal = itemView.findViewById(R.id.shoppingCartTotal);
+            addCarpet = itemView.findViewById(R.id.addCarpet);
+            removeCarpet = itemView.findViewById(R.id.removeCarpet);
         }
 
         public void bindTo(CarpetInCart carpet) {
@@ -62,6 +67,17 @@ public class ShoppingCartViewAdapter extends RecyclerView.Adapter<ShoppingCartVi
             carpetAmount.setText(String.valueOf(carpet.getAmount()).concat(" db"));
             carpetTotal.setText(String.valueOf(carpet.getTotalPrice()).concat(" Ft"));
             Glide.with(context).load(carpet.getImageResource()).into(imageView);
+
+            addCarpet.setOnClickListener(e -> {
+                ShoppingCart.addToCarpet(carpet);
+                notifyDataSetChanged();
+            });
+
+            removeCarpet.setOnClickListener(e -> {
+                ShoppingCart.removeCarpet(carpet);
+                ((ShoppingCartActivity)context).checkEmptiness();
+                notifyDataSetChanged();
+            });
         }
 
     }

@@ -260,4 +260,17 @@
     <string name="darab_carpets">Darabszőnyegek</string>
     <string name="total">Összesen</string>
     <string name="amount">Mennyiség</string>
+    <string name="order">Rendelés</string>
+    <string name="back">Vissza</string>
+    <string name="cart_is_empty">A kosara üres</string>
+    <string name="order_instructions">Kérjük adja meg az adatait</string>
+    <string name="no_receipts">Még nincsenek számlái</string>
+    <string name="receipt_name_placeholder">Számla neve</string>
+    <string name="notify_me">Értesítést szeretnék kapni, ha elkészült a számla</string>
+    <string name="receipt_id">Számla azonosító:</string>
+    <string name="receipt_id_placeholder">91827361298376</string>
+    <string name="name_placeholder">Joe Mama</string>
+    <string name="postal_code_placeholder">69420</string>
+    <string name="city_placeholder">Kesztölc</string>
+    <string name="address_placeholder">Bing Bong 6</string>
 </resources>

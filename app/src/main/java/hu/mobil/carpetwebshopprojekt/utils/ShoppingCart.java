@@ -1,7 +1,5 @@
 package hu.mobil.carpetwebshopprojekt.utils;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import hu.mobil.carpetwebshopprojekt.models.Carpet;
@@ -30,5 +28,28 @@ public class ShoppingCart {
 
     public static ArrayList<CarpetInCart> getCart() {
         return contents;
+    }
+
+    public static void addToCarpet(CarpetInCart carpet) {
+        carpet.increment();
+    }
+
+    public static void removeCarpet(CarpetInCart carpet) {
+        boolean deleted = !carpet.decrement();
+        if (deleted) {
+            contents.remove(carpet);
+        }
+    }
+
+    public static int getTotalPrice() {
+        int total = 0;
+        for (CarpetInCart carpet : contents) {
+            total += carpet.getTotalPrice();
+        }
+        return total;
+    }
+
+    public static void emptyCart() {
+        contents.clear();
     }
 }

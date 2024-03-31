@@ -1,9 +1,7 @@
 package hu.mobil.carpetwebshopprojekt;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,7 +25,7 @@ public class ProfileActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        if (super.getUser() == null) {
+        if (MainActivity.getUser() == null) {
             finish();
         }
     }
@@ -35,7 +33,7 @@ public class ProfileActivity extends MainActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getUserData(super.getUser().getEmail());
+        getUserData(MainActivity.getUser().getEmail());
     }
 
     public void logout(View view) {
@@ -46,19 +44,13 @@ public class ProfileActivity extends MainActivity {
 
     public void editProfile(View view) {
         Intent intent = new Intent(this, EditProfileActivity.class);
-        intent.putExtra("UserEmail", super.getUser().getEmail());
         startActivity(intent);
     }
 
     public void displayInfo(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("A személyes adatok kitöltésével meggyorsíthatja a rendelés leadását!");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.cancel());
         builder.show();
     }
 
@@ -80,6 +72,8 @@ public class ProfileActivity extends MainActivity {
         emailTV.setText(user.getEmail());
         if (user.getVezeteknev() != null && user.getKeresztnev() != null && !user.getKeresztnev().isEmpty() && !user.getVezeteknev().isEmpty()) {
             nameTV.setText(user.getVezeteknev().concat(" ").concat(user.getKeresztnev()));
+        } else {
+            nameTV.setText("");
         }
         postalCodeTV.setText(user.getPostalCode());
         cityTV.setText(user.getCity());

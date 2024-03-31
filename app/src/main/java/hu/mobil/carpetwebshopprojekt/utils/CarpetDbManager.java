@@ -2,7 +2,6 @@ package hu.mobil.carpetwebshopprojekt.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 

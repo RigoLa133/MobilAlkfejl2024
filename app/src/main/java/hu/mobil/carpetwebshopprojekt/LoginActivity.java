@@ -63,10 +63,7 @@ public class LoginActivity extends MainActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Log.d("Nice", "Normal login success!");
                     LoginActivity.super.redirectToProfileScreen();
-                } else {
-                    Log.d("Not Nice", "Normal Login failed: " + task.getException().getMessage());
                 }
             }
         });
@@ -91,7 +88,6 @@ public class LoginActivity extends MainActivity {
 
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d("Nice", "Google acc:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 Log.w("Not Nice", "Google sing in failed", e);
@@ -106,8 +102,6 @@ public class LoginActivity extends MainActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     LoginActivity.super.redirectToProfileScreen();
-                } else {
-                    Log.d("Not Nice", "Google Login failed: " + task.getException().getMessage());
                 }
             }
         });

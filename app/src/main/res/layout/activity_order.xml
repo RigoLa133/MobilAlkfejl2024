@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfileActivity"
+    tools:context=".OrderActivity"
     android:padding="40dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/orderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="@string/edit_profile"
-        android:textSize="25sp"
+        android:text="@string/order"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,10 +24,21 @@
         android:background="@color/secondary_information_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/orderTextView" />
+
+    <TextView
+        android:id="@+id/orderInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/order_instructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view"
+        app:layout_constraintBottom_toTopOf="@id/orderNameLL"
+        android:textColor="@color/secondary_information_color"
+        android:textSize="18sp"/>
 
     <LinearLayout
-        android:id="@+id/nameLL"
+        android:id="@+id/orderNameLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -36,14 +47,14 @@
         app:layout_constraintTop_toBottomOf="@+id/view">
 
         <EditText
-            android:id="@+id/vnevET"
+            android:id="@+id/orderVnevET"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:hint="@string/vezeteknev"
             android:inputType="textPersonName"/>
 
         <EditText
-            android:id="@+id/knevET"
+            android:id="@+id/orderKnevET"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -53,63 +64,74 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/postalCodeET"
+        android:id="@+id/orderPostalCodeET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="@string/postal_code"
-        app:layout_constraintTop_toBottomOf="@+id/nameLL"
+        app:layout_constraintTop_toBottomOf="@+id/orderNameLL"
         tools:layout_editor_absoluteX="40dp"
         android:inputType="textPostalAddress"
         android:autofillHints="postalCode"/>
 
     <EditText
-        android:id="@+id/cityET"
+        android:id="@+id/orderCityET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="@string/city"
-        app:layout_constraintTop_toBottomOf="@+id/postalCodeET"
+        app:layout_constraintTop_toBottomOf="@+id/orderPostalCodeET"
         tools:layout_editor_absoluteX="40dp"
         android:inputType="textPostalAddress"
         android:autofillHints="postalAddress"/>
 
     <EditText
-        android:id="@+id/addressET"
+        android:id="@+id/orderAddressET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="@string/street_address"
-        app:layout_constraintTop_toBottomOf="@+id/cityET"
+        app:layout_constraintTop_toBottomOf="@+id/orderCityET"
         tools:layout_editor_absoluteX="40dp"
         android:inputType="textPostalAddress"
         android:autofillHints="postalAddress"/>
 
+    <CheckBox
+        android:id="@+id/notificationCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notify_me"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderAddressET" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/addressET"
+        app:layout_constraintTop_toBottomOf="@+id/orderAddressET"
         tools:layout_editor_absoluteX="40dp">
 
         <Button
-            android:id="@+id/cancel_button"
+            android:id="@+id/cancelOrderButton"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="47dp"
             android:onClick="cancel"
             android:text="@string/cancel"
             android:textAllCaps="true"
             app:cornerRadius="5dp" />
 
         <Button
-            android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
+            android:id="@+id/finalizeOrderButton"
+            android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:onClick="saveChanges"
-            android:text="@string/edit"
+            android:onClick="finalizeOrder"
+            android:text="@string/order"
             android:textAllCaps="true"
             android:textColor="@color/primary_color"
             app:cornerRadius="5dp"
@@ -119,5 +141,7 @@
             app:strokeWidth="2dp" />
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

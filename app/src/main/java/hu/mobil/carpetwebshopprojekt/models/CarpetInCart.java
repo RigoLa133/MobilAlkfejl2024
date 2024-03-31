@@ -31,4 +31,17 @@ public class CarpetInCart {
         return amount * price;
     }
 
+    public void increment() {
+        this.amount++;
+    }
+
+    public boolean decrement() {
+        if (this.amount - 1 == 0) {
+            this.amount--;
+            return false;
+        } else {
+            this.amount--;
+            return true;
+        }
+    }
 }
