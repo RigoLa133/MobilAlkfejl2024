@@ -33,6 +33,7 @@ public class ReceiptsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipts);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         receipts = new ArrayList<>();
         recyclerView = findViewById(R.id.receiptsRecyclerView);
