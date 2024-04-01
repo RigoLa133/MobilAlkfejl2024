@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -77,13 +78,19 @@ public class LoginActivity extends AppCompatActivity {
             passwordET.setError("A jelszó nem lehet üres");
             return;
         }
-
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    Log.d("Nice", "Sikeres bejelentkezés");
+                    MainActivity.setUSer(FirebaseAuth.getInstance().getCurrentUser());
                     Intent intent = new Intent(context, ProfileActivity.class);
                     startActivity(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("A megadott adatok nem megfelelőek!");
+                    builder.setPositiveButton("OK", (dialog, which) -> dialog.cancel());
+                    builder.show();
                 }
             }
         });

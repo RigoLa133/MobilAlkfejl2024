@@ -80,7 +80,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d("Nice", "User created successfully");
                     UserDao.addUser(new User(email));
-                    Intent intent = new Intent(context, LoginActivity.class);
+                    MainActivity.setUSer(FirebaseAuth.getInstance().getCurrentUser());
+                    Intent intent = new Intent(context, ProfileActivity.class);
                     startActivity(intent);
                 } else {
                     Log.d("Not Nice", "User registration failed: " + task.getException().getMessage());

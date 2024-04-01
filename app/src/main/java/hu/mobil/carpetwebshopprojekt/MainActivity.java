@@ -226,6 +226,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public static void setUSer(FirebaseUser fUser) {
+        user = fUser;
+    }
+
     public static FirebaseUser getUser() {
         return user;
     }

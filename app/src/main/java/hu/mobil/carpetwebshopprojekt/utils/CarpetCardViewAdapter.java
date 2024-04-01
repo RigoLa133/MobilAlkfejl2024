@@ -36,6 +36,7 @@ public class CarpetCardViewAdapter extends RecyclerView.Adapter<CarpetCardViewAd
         this.carpetsDataAll = carpetsData;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.carpet_card, parent, false));
@@ -45,10 +46,10 @@ public class CarpetCardViewAdapter extends RecyclerView.Adapter<CarpetCardViewAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         Carpet currentCarpet = carpetsData.get(position);
         holder.bindTo(currentCarpet);
-        if (holder.getAdapterPosition() > lastPosition) {
+        if (holder.getBindingAdapterPosition() > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_row);
             holder.itemView.startAnimation(animation);
-            lastPosition = holder.getAdapterPosition();
+            lastPosition = holder.getBindingAdapterPosition() ;
         }
     }
 
