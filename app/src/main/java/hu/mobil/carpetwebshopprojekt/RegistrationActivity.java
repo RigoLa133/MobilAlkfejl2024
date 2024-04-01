@@ -1,12 +1,16 @@
 package hu.mobil.carpetwebshopprojekt;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,10 +20,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import hu.mobil.carpetwebshopprojekt.dao.UserDao;
 import hu.mobil.carpetwebshopprojekt.models.User;
 
-public class RegistrationActivity extends MainActivity {
+public class RegistrationActivity extends AppCompatActivity {
     EditText emailET;
     EditText passwordET;
     EditText passwordConfirmET;
+    Context context;
 
     private FirebaseAuth auth;
 
@@ -27,12 +32,27 @@ public class RegistrationActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        context = this;
 
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
         passwordConfirmET = findViewById(R.id.passwordConfirmET);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         auth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void register(View view) {
@@ -60,7 +80,8 @@ public class RegistrationActivity extends MainActivity {
                 if (task.isSuccessful()) {
                     Log.d("Nice", "User created successfully");
                     UserDao.addUser(new User(email));
-                    RegistrationActivity.super.redirectToProfileScreen();
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    startActivity(intent);
                 } else {
                     Log.d("Not Nice", "User registration failed: " + task.getException().getMessage());
                 }

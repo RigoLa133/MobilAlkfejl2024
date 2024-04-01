@@ -1,5 +1,6 @@
 package hu.mobil.carpetwebshopprojekt;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,12 +33,25 @@ public class ReceiptsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipts);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         receipts = new ArrayList<>();
         recyclerView = findViewById(R.id.receiptsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ReceiptCardViewAdapter(this, receipts);
         recyclerView.setAdapter(adapter);
         readReceipts();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void readReceipts() {

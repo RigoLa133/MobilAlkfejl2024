@@ -2,17 +2,23 @@ package hu.mobil.carpetwebshopprojekt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import hu.mobil.carpetwebshopprojekt.dao.UserDao;
 import hu.mobil.carpetwebshopprojekt.models.User;
+import hu.mobil.carpetwebshopprojekt.utils.ShoppingCart;
 
-public class ProfileActivity extends MainActivity {
+public class ProfileActivity extends AppCompatActivity {
     private TextView nameTV;
     private TextView emailTV;
     private TextView postalCodeTV;
@@ -24,6 +30,7 @@ public class ProfileActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (MainActivity.getUser() == null) {
             finish();
@@ -36,9 +43,24 @@ public class ProfileActivity extends MainActivity {
         getUserData(MainActivity.getUser().getEmail());
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
-        super.returnToHomePage();
+        ShoppingCart.emptyCart();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 

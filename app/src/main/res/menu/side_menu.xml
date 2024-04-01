@@ -9,27 +9,33 @@
 
         <item
             android:id="@+id/allCarpets"
-            android:title="@string/all_carpets"/>
+            android:title="@string/all_carpets"
+            android:icon="@drawable/carpet_all"/>
 
         <item
             android:id="@+id/darabCarpets"
-            android:title="@string/darab_carpets"/>
+            android:title="@string/darab_carpets"
+            android:icon="@drawable/carpet_darab"/>
 
         <item
             android:id="@+id/outdoorCarpets"
-            android:title="@string/outdoor_carpets" />
+            android:title="@string/outdoor_carpets"
+            android:icon="@drawable/carpet_kulteri"/>
 
         <item
             android:id="@+id/bathroomCarpets"
-            android:title="@string/bathroom_carpets"/>
+            android:title="@string/bathroom_carpets"
+            android:icon="@drawable/carpet_furdoszoba"/>
 
         <item
             android:id="@+id/childrensCarpets"
-            android:title="@string/childrens_carpets"/>
+            android:title="@string/childrens_carpets"
+            android:icon="@drawable/carpet_gyerek"/>
 
         <item
             android:id="@+id/kitchenCarpets"
-            android:title="@string/kitchen_carpets"/>
+            android:title="@string/kitchen_carpets"
+            android:icon="@drawable/carpet_konyha"/>
 
         <item android:title=""/>
 

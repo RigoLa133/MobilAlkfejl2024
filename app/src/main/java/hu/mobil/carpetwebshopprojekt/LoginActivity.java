@@ -1,12 +1,15 @@
 package hu.mobil.carpetwebshopprojekt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,8 +23,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class LoginActivity extends MainActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 420;
+    Context context;
 
     EditText emailET;
     EditText passwordET;
@@ -33,6 +37,8 @@ public class LoginActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        context = this;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
@@ -43,6 +49,18 @@ public class LoginActivity extends MainActivity {
                 .requestEmail()
                 .build();
         gsc = GoogleSignIn.getClient(this, gso);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -63,7 +81,8 @@ public class LoginActivity extends MainActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    LoginActivity.super.redirectToProfileScreen();
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -101,7 +120,8 @@ public class LoginActivity extends MainActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    LoginActivity.super.redirectToProfileScreen();
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    startActivity(intent);
                 }
             }
         });

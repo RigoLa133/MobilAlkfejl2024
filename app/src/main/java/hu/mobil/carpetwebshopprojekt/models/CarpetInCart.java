@@ -15,10 +15,6 @@ public class CarpetInCart {
         return imageResource;
     }
 
-    public void addOne() {
-        this.amount++;
-    }
-
     public String getName() {
         return name;
     }
@@ -29,6 +25,10 @@ public class CarpetInCart {
 
     public int getTotalPrice() {
         return amount * price;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void increment() {

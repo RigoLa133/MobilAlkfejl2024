@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import hu.mobil.carpetwebshopprojekt.models.Carpet;
+import hu.mobil.carpetwebshopprojekt.models.CarpetInCart;
 import hu.mobil.carpetwebshopprojekt.utils.CarpetCardViewAdapter;
 import hu.mobil.carpetwebshopprojekt.utils.CarpetDbManager;
 import hu.mobil.carpetwebshopprojekt.utils.ShoppingCart;
@@ -56,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
         carpetList = new ArrayList<>();
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         carpetDbManager = new CarpetDbManager(FirebaseFirestore.getInstance());
         carpetDbManager.queryData(carpetList, adapter, this);
-
 
     }
 
@@ -106,10 +106,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
-        //logo clicked
-        if (itemId == android.R.id.home && this.getClass() != MainActivity.class) {
-            returnToHomePage();
-        }
         //shopping cart clicked
         if (itemId == R.id.shopping_cart) {
             if (user != null) {
@@ -236,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logout(View view) {
         user = null;
+        ShoppingCart.emptyCart();
         FirebaseAuth.getInstance().signOut();
     }
 
@@ -248,8 +245,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReceiptsActivity.class);
         startActivity(intent);
     }
-
-
-
-
 }

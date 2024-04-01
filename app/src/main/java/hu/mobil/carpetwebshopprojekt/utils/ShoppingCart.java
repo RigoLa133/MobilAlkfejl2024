@@ -11,7 +11,7 @@ public class ShoppingCart {
     public static void addToCart(Carpet carpet) {
         for (int i = 0; i < contents.size(); i++) {
             if (contents.get(i).getName().equals(carpet.getName())) {
-                contents.get(i).addOne();
+                contents.get(i).increment();
                 return;
             }
         }
@@ -51,5 +51,13 @@ public class ShoppingCart {
 
     public static void emptyCart() {
         contents.clear();
+    }
+
+    public static void setAmountOfCarpet(Carpet carpet, int amount) {
+        for (CarpetInCart c : contents) {
+            if (c.getName().equals(carpet.getName())) {
+                c.setAmount(amount);
+            }
+        }
     }
 }
