@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="vertical"
+    android:scrollbarSize="0dp"
+    tools:context=".ShoppingCartActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shoppingCartRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:id="@+id/cartEmptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cart_is_empty"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/secondary_information_color"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/shoppingCartButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+
+        android:orientation="horizontal"
+        android:layout_marginBottom="40dp">
+
+        <Button
+            android:id="@+id/cancel_order"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:text="@string/back"
+            android:textAllCaps="true"
+            android:onClick="goBack"
+            app:cornerRadius="5dp" />
+
+        <Button
+            android:id="@+id/place_order"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/order"
+            android:textAllCaps="true"
+            android:onClick="placeOrder"
+            app:cornerRadius="5dp"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
