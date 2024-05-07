@@ -10,56 +10,44 @@ Volt egy olyan problémám a projekt készítése közben, hogy a főmenün a sz
 
 <ins>Fordítási hiba nincs</ins> :heavy_check_mark:
 
-Futási hiba nincs :heavy_check_mark:
+<ins>Futási hiba nincs</ins> :heavy_check_mark:
 
-
-Firebase authentication
+<ins>Firebase authentication</ins>
 - Regisztráció :heavy_check_mark:
 - Bejelentkezés :heavy_check_mark:
 
-
-Adatmodell definiálás :heavy_check_mark:
+<ins>Adatmodell definiálás</ins> :heavy_check_mark:
 - models package-ben
 
-
-Legalább 3 activity/fragmens
+<ins>Legalább 3 activity/fragmens</ins>
 - Van sok :heavy_check_mark:
 
-
-Beviteli mezők megfelelően
+<ins>Beviteli mezők megfelelően</ins>
 - Mindenhol megvan, hacsak valamit nem vettem észre.
 
+<ins>ConstraintLayout + másik</ins> :heavy_check_mark:
 
-ConstraintLayout + másik :heavy_check_mark:
-
-
-Reszponzív
+<ins>Reszponzív</ins>
 - Nemtudom mi számít max pontosnak, én nem adtam hozzá semmi extrát, Pixel 7 Pro emulátoron dolgoztam végig, ott ahogy működik és kinéz ugyanúgy működik és néz ki kisebb      kijelzős emulátoron és elforgatva is (kivéve ha valamit nem vettem észre).
 
-
-Legalább 2 animáció
+<ins>Legalább 2 animáció</ins>
 - MainActivity-n ha a kosárba gomb kattintásra változik
 - MainActivity-n a kosár ikonja elfordul ha belerakunk valamit a kosárba
 
+<ins>Intentek</ins> :heavy_check_mark:
 
-Intentek :heavy_check_mark:
-
-
-Lifecycle hook
+<ins>Lifecycle hook</ins>
 -  MainActivity-ben (79. sor) van egy onRestart, ami beállítja a kosár ikonjánál a piros karikát a kosárban lévő szőnyegek számával. Ha ez nem lenne onRestart-ban, akkor ha    elhagyjuk a főképernyőt és visszatérünk, akkor eltűnne a karika.
 
-
-Android permission
+<ins>Android permission</ins>
 - Rendelés leadásánál van egy checkbox, amit ha bepipálunk akkor kapunk egy értesítést (amihez api 33-tól kell permission), ha kész a számla. Ez egy timerrel működik, pár     másodpercen belül kapunk értesítést. Ha nem pipáljuk be nincs timer, azonnal létrejön az értesítés.
 
-
-CRUD
+<ins>CRUD</ins>
 - Create: Felhasználó regisztráció, számla készítés
 - Read: Felhasználó adat lekérdezés, szőnyegek listázása, számlák listázása
 - Update: Felhasználó adat szerkesztés
 - Delete: Számlák törlése
 
-
-2 Komplex Firestore lekérdezés
+<ins>2 Komplex Firestore lekérdezés</ins>
 - utils package CarpetDbManager 30. sor
 - utils package CarpetDbManager 61. sor
