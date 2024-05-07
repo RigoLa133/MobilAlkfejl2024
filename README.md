@@ -8,7 +8,7 @@ Volt egy olyan problémám a projekt készítése közben, hogy a főmenün a sz
 
 #### Követelmények
 
-Fordítási hiba nincs :heavy_check_mark:
+<ins>Fordítási hiba nincs</ins> :heavy_check_mark:
 
 Futási hiba nincs :heavy_check_mark:
 
