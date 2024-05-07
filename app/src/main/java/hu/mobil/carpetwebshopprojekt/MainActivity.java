@@ -195,7 +195,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addToCart(Carpet carpet) {
-        if (user == null) {return;}
+        if (user == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("A kosárba helyezéshez be kell jelentkezni.");
+            builder.setNegativeButton("OK", (dialog, which) -> {
+                dialog.dismiss();
+            });
+            builder.show();
+            return;
+        }
         ShoppingCart.addToCart(carpet);
         findViewById(R.id.shopping_cart).startAnimation(AnimationUtils.loadAnimation(this, R.anim.cart_rotation));
         setRedCircleText();
